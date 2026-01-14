@@ -9,7 +9,12 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .routes import api
-    app.register_blueprint(api)
+    from app.routes.libraries import libraries_bp
+    from app.routes.books import books_bp
+    from app.routes.users import users_bp
+
+    app.register_blueprint(libraries_bp)
+    app.register_blueprint(books_bp)
+    app.register_blueprint(users_bp)
 
     return app
